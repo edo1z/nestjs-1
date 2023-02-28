@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Query, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Query,
+  Param,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
 
 @Controller('hoge')
 export class HogeController {
@@ -16,8 +24,7 @@ export class HogeController {
   getHoge(@Param('id') _id: string): string {
     const id: number = parseInt(_id);
     if (isNaN(id)) {
-      console.log('ERROR!');
-      return 'ERROR!';
+      throw new HttpException('Invalid ID', HttpStatus.BAD_REQUEST);
     } else {
       const msg = `HOGE ${id}!`;
       console.log(msg);
