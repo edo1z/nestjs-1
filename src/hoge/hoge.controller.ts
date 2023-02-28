@@ -4,19 +4,22 @@ import {
   Post,
   Query,
   Param,
+  Body,
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
+import { CreateHogeDto } from './dto/create-hoge.dto';
 
 @Controller('hoge')
 export class HogeController {
   @Post()
-  create(): string {
+  create(@Body() createHogeDto: CreateHogeDto): string {
+    console.log('body', createHogeDto);
     return 'created hoge!';
   }
 
   @Get()
-  getHogeList(): string {
+  async getHogeList(): Promise<string> {
     return 'HOGE List!';
   }
 
