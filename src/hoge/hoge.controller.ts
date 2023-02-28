@@ -9,18 +9,22 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { CreateHogeDto } from './dto/create-hoge.dto';
+import { HogeService } from './hoge.service';
+import { Hoge } from './interfaces/hoge.interface';
 
 @Controller('hoge')
 export class HogeController {
+  constructor(private hogeService: HogeService) {}
+
   @Post()
-  create(@Body() createHogeDto: CreateHogeDto): string {
+  async create(@Body() createHogeDto: CreateHogeDto): Promise<void> {
     console.log('body', createHogeDto);
-    return 'created hoge!';
+    this.hogeService.create(createHogeDto);
   }
 
   @Get()
-  async getHogeList(): Promise<string> {
-    return 'HOGE List!';
+  async getHogeList(): Promise<Hoge[]> {
+    return this.hogeService.findAll();
   }
 
   @Get(':id')
