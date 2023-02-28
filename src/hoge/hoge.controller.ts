@@ -1,4 +1,4 @@
-import { Controller, Get, Req } from '@nestjs/common';
+import { Controller, Get, Query, Req } from '@nestjs/common';
 import { Request } from 'express';
 
 @Controller('hoge')
@@ -9,8 +9,16 @@ export class HogeController {
   }
 
   @Get('hage')
-  getHage(@Req() req: Request): string {
-    console.log(req.query, req.params);
+  getHage(@Query('h') h: string | undefined): string {
+    if (h !== undefined) {
+      if (h === '') {
+        console.log('h is empty string');
+      } else {
+        console.log(h);
+      }
+    } else {
+      console.log('UNDEFINED');
+    }
     return 'HAGE!';
   }
 }
