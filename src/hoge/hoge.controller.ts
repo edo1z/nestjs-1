@@ -1,4 +1,5 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Req } from '@nestjs/common';
+import { Request } from 'express';
 
 @Controller('hoge')
 export class HogeController {
@@ -8,7 +9,8 @@ export class HogeController {
   }
 
   @Get('hage')
-  getHage(): string {
+  getHage(@Req() req: Request): string {
+    console.log(req.query, req.params);
     return 'HAGE!';
   }
 }
