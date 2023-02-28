@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Query } from '@nestjs/common';
+import { Controller, Get, Post, Query, Param } from '@nestjs/common';
 
 @Controller('hoge')
 export class HogeController {
@@ -8,8 +8,21 @@ export class HogeController {
   }
 
   @Get()
-  getHoge(): string {
-    return 'HOGE!';
+  getHogeList(): string {
+    return 'HOGE List!';
+  }
+
+  @Get(':id')
+  getHoge(@Param('id') _id: string): string {
+    const id: number = parseInt(_id);
+    if (isNaN(id)) {
+      console.log('ERROR!');
+      return 'ERROR!';
+    } else {
+      const msg = `HOGE ${id}!`;
+      console.log(msg);
+      return msg;
+    }
   }
 
   @Get('hage')
