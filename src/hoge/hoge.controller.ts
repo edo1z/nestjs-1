@@ -6,4 +6,9 @@ export class HogeController {
   getHoge(): string {
     return 'HOGE!';
   }
+
+  @Get('hage')
+  getHage(): string {
+    return 'HAGE!';
+  }
 }
