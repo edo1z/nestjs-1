@@ -7,6 +7,7 @@ import {
   Body,
   HttpException,
   HttpStatus,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { CreateHogeDto } from './dto/create-hoge.dto';
 import { HogeService } from './hoge.service';
@@ -28,15 +29,10 @@ export class HogeController {
   }
 
   @Get(':id')
-  getHoge(@Param('id') _id: string): string {
-    const id: number = parseInt(_id);
-    if (isNaN(id)) {
-      throw new HttpException('Invalid ID', HttpStatus.BAD_REQUEST);
-    } else {
-      const msg = `HOGE ${id}!`;
-      console.log(msg);
-      return msg;
-    }
+  async getHoge(@Param('id', ParseIntPipe) id: number): Promise<string> {
+    const msg = `HOGE ${id}!`;
+    console.log(msg);
+    return msg;
   }
 
   @Get('hage')
