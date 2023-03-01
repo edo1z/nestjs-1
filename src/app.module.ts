@@ -4,9 +4,10 @@ import { AppService } from './app.service';
 import { HogeModule } from './hoge/hoge.module';
 import { logger } from './middleware/logger.middleware';
 import { PrismaModule } from './prisma/prisma.module';
+import { ArticlesModule } from './articles/articles.module';
 
 @Module({
-  imports: [HogeModule, PrismaModule],
+  imports: [HogeModule, PrismaModule, ArticlesModule],
   controllers: [AppController],
   providers: [AppService],
 })
