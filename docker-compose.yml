@@ -1,0 +1,13 @@
+services:
+  db:
+    image: mysql:8.0
+    ports:
+      - 3306:3306
+    volumes:
+      - nest-1-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: nest1
+
+volumes:
+  nest-1-data:

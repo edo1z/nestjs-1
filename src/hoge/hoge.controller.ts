@@ -5,8 +5,6 @@ import {
   Query,
   Param,
   Body,
-  HttpException,
-  HttpStatus,
   ParseIntPipe,
 } from '@nestjs/common';
 import { CreateHogeDto } from './dto/create-hoge.dto';
